@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
+using libStringAnalyzer;
 
 namespace Tcp.Server
 {
@@ -61,7 +62,7 @@ namespace Tcp.Server
                 // Antwort berechnen
                 if (!request.Contains("exit"))
                 {
-                    response = ServerRequest.Evaluate(request);
+                    response = StringAnalyzer.Evaluate(request);
                     // Antwort an Nutzer ausgeben
                     Console.WriteLine($"[Server] Antwort: {response}");       
                 }

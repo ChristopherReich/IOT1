@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\libStringAnalyzer\libStringAnalyzer.csproj" />
+    <PackageReference Include="MQTTnet" Version="4.1.4.563" />
   </ItemGroup>
 
 </Project>

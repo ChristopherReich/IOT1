@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Tcp.Server
+namespace libStringAnalyzer
 {
-    internal static class ServerRequest
+    public class StringAnalyzer
     {
         public static string Evaluate(string req)
         {
@@ -27,10 +22,20 @@ namespace Tcp.Server
                 else
                     response = "Die Zeichenfolge stimmt NICHT überein!";
             }
+            // Vergleich Operator erkannt
+            if (theReqest.Contains(";"))
+            {
+                Match match = Regex.Match(theReqest, @"((.*)(;)(.*))");
+
+                if (match.Groups[2].Value == match.Groups[4].Value)
+                    response = "Die Zeichenfolge stimmt überein!";
+                else
+                    response = "Die Zeichenfolge stimmt NICHT überein!";
+            }
 
             // Mathematischer Operator erkannt
             else if (theReqest.Contains("+") || theReqest.Contains("-") || theReqest.Contains("*") || theReqest.Contains("/"))
-            {        
+            {
                 Match match = Regex.Match(theReqest, @"(\d*\,?\.?\d*)([+-/*])(\d*\,?\.?\d*)");
                 double number1;
                 double number2;
@@ -83,8 +88,7 @@ namespace Tcp.Server
                 response = "Eingabe konnte nicht ausgewertet werden. Prüfen Sie ihre Eingabe!";
 
             return response;
-            
-        }
 
+        }
     }
 }
